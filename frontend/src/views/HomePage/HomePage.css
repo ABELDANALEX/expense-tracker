@@ -1,0 +1,93 @@
+html,body{
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: black;
+    color: white;
+}
+
+.ancestor-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 9.5vh;
+    background-color: #222222;
+    padding: 12px;
+
+}
+
+.header-left{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.logo{
+    font-size: 3rem;
+}
+
+.heading-text{
+    font-size: 3em;
+    font-weight: 700;
+}
+
+.links-container{
+    display: flex;
+    gap: 1em;
+    font-size: 1.1em;
+    margin-right: 0.5em;
+}
+.links-container div{
+    padding: 5px;
+}
+.links-container div:hover{
+    cursor: pointer;
+    /* text-decoration-line: underline;
+    text-decoration-style: solid; */
+    text-shadow: 0 0 2px white;
+}
+
+.body-container{
+    /*  height: 85vh; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    margin-top: 4rem;
+    gap: 1rem;
+}
+
+.sub-header{
+    font-weight: 900;
+    font-size: 5rem;
+}
+
+.body-text{
+    white-space: normal;
+    max-width: 700px;
+    font-size: 2rem;
+    text-align: center;
+}
+.get-started{
+    align-self:flex-end;
+    margin-top: 7rem;
+    font-size: larger;
+    margin-right: 25rem;
+    padding-left: 10px;
+    padding-right: 50px;
+    padding-top: 5px;
+    padding-bottom: 2px;
+    border: 1px solid white;
+}
+
+.get-started:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
