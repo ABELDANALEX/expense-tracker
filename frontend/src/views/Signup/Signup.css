@@ -1,0 +1,80 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
+}
+
+.signup-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background-color: #1c1c1c;
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.225);
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.header {
+    background-color: #1c1c1c;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    color: white;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.form input {
+    padding: 0.75rem 1rem;
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form input:focus {
+    border-color: white;
+}
+
+.submit-container {
+    display: flex;
+    justify-content: center;
+}
+
+.submit {
+    padding: 0.7rem 2rem;
+    border: 1px solid white;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-align: center;
+}
+
+.submit:hover {
+    background-color: white;
+    color: black;
+}
