@@ -22,6 +22,7 @@ export default function Signup() {
     }
 
     alert("Signup Successful. Please login now to access the website")
+    //set balance to -1. DO a check in Dashboard - if balance is -1 prompt user to enter initial balance, else show current balance
     navigate('/login')
   }
   return (
