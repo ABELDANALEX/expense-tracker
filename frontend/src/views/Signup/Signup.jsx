@@ -8,7 +8,7 @@ export default function Signup() {
       <form className="signup-container" id="signup-container">
         <div className="card" id="card">
           <div className="header" id="header">
-            <div className="txt">SignUp</div>
+            <div className="txt">Sign Up</div>
           </div>
           <div className="form" id="form">
             <div>
@@ -43,11 +43,14 @@ export default function Signup() {
               />
             </div>
           </div>
+          <div className="submit-container" id="submit-container">
+            <button className="submit" id="submit" type="submit">Sign Up</button>
+          </div>
           <div className="login-link-container" id="login-link-container">
             Already have an account? &nbsp;
             <span
-              className="login-link"
-              id="login-link"
+              className="login-link-inline"
+              id="login-link-inline"
               tabIndex={0}
               role="link"
               onClick={() => navigate("/login")}
@@ -55,9 +58,6 @@ export default function Signup() {
               Click here
             </span>
             &nbsp; to login
-          </div>
-          <div className="submit-container">
-            <div className="submit">SignUp</div>
           </div>
         </div>
       </form>

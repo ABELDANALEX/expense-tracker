@@ -93,13 +93,13 @@ body, html {
     color: #777
 }
 
-.signup-link{
+.signup-link-inline{
     text-decoration: underline solid white;
     text-decoration-thickness: 0.2px;
     color: white;
     cursor: pointer;
 }
 
-.signup-link:hover{
+.signup-link-inline:hover{
     text-shadow: 0 0 2px white;
 }
