@@ -101,5 +101,5 @@ body, html {
 }
 
 .signup-link:hover{
-    
+    text-shadow: 0 0 2px white;
 }
