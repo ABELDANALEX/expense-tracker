@@ -17,21 +17,22 @@ export default function Login() {
               <input id="email" name="email" type="email" placeholder="someone@enterprisename.com" />
             </div>
             <div>
-              <label htmlFor="">Password:</label>
+              <label htmlFor="password">Password:</label>
               <input id="password" name="password" type="password" placeholder="Enter password" />
             </div>
           </div>
           <div className="submit-container" id="submit-container">
-            <button className="submit" id="submit">Login</button>
+            <button className="submit" id="submit" type="submit">Login</button>
           </div>
           <div className="signup-link-container" id="signup-link-container">
-            Don't have an account?&nbsp;
-
+            Don't have an account?
+            &nbsp;
             <span className="signup-link" 
             id="signup-link" 
             tabIndex={0} 
             role="link"
-            onClick={() => navigate('/signup')}>Click here</span> 
+            onClick={() => navigate('/signup')}>Click here
+            </span> 
             &nbsp;
             to register
           </div>
