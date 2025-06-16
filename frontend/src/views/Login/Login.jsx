@@ -27,8 +27,8 @@ export default function Login() {
           <div className="signup-link-container" id="signup-link-container">
             Don't have an account?
             &nbsp;
-            <span className="signup-link" 
-            id="signup-link" 
+            <span className="signup-link-inline" 
+            id="signup-link-inline" 
             tabIndex={0} 
             role="link"
             onClick={() => navigate('/signup')}>Click here
