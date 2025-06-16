@@ -3,9 +3,30 @@ import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const navigate=useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = document.getElementById("username")?.value.trim();
+    const email = document.getElementById("email")?.value.trim()
+    const pwd = document.getElementById("password")?.value
+    const c_pwd = document.getElementById("c_password")?.value
+
+    if (!name || !email || !pwd || !c_pwd){
+      window.alert("Please fill in all fields.")
+      return
+    }
+
+    if (pwd != c_pwd){
+      window.alert("Passwords do not match")
+      return
+    }
+
+    alert("Signup Successful. Please login now to access the website")
+    navigate('/login')
+  }
   return (
     <>
-      <form className="signup-container" id="signup-container">
+      <form className="signup-container" id="signup-container" onSubmit={handleSubmit}>
         <div className="card" id="card">
           <div className="header" id="header">
             <div className="txt">Sign Up</div>

@@ -4,9 +4,27 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate( )
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    // window.alert("Hi")
+
+    const email = document.getElementById("email")?.value;
+    const pwd = document.getElementById("password")?.value;
+
+    if (!email || !pwd){
+      window.alert ("Please fill in both fields.")
+      return
+    }
+
+    //dummy
+    window.alert("login successful")
+    navigate('/dashboard')
+  }
+
   return (
     <>
-      <form className="login-container" id="login-container">  {/* Changed it to a form element */}
+      <form className="login-container" id="login-container" onSubmit={handleSubmit}>  {/* Changed it to a form element */}
         <div className="card" id="card">
           <div className="header" id="header">
             <div className="txt" id ="txt">Log In</div>
