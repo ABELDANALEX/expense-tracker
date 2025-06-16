@@ -1,32 +1,66 @@
 import "./Signup.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  const navigate=useNavigate();
   return (
     <>
-      <div className="signup-container">
-        <div className="card">
-          <div className="header">
+      <form className="signup-container" id="signup-container">
+        <div className="card" id="card">
+          <div className="header" id="header">
             <div className="txt">SignUp</div>
           </div>
-          <div className="form">
+          <div className="form" id="form">
             <div>
-              <input type="text" placeholder="Username" />
+              <label htmlFor="username">Username:</label>
+              <input id="username" name="username" type="text" placeholder="Username" />
             </div>
             <div>
-              <input type="email" placeholder="Email" />
+              <label htmlFor="email">Email:</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="someone@enterprisename.com"
+              />
             </div>
             <div>
-              <input type="password" placeholder="Password" />
+              <label htmlFor="password">Password:</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Enter Paswword"
+              />
             </div>
             <div>
-              <input type="password" placeholder="Confirm Password" />
+              <label htmlFor="c_password">Confirm Password:</label>
+              <input
+                id="c_password"
+                name="c_password"
+                type="password"
+                placeholder="Re-Enter Password"
+              />
             </div>
+          </div>
+          <div className="login-link-container" id="login-link-container">
+            Already have an account? &nbsp;
+            <span
+              className="login-link"
+              id="login-link"
+              tabIndex={0}
+              role="link"
+              onClick={() => navigate("/login")}
+            >
+              Click here
+            </span>
+            &nbsp; to login
           </div>
           <div className="submit-container">
             <div className="submit">SignUp</div>
           </div>
         </div>
-      </div>
+      </form>
     </>
   );
 }
