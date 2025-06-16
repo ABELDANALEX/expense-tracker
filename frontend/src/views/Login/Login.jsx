@@ -1,27 +1,42 @@
 import React from "react";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate( )
   return (
     <>
-      <div className="login-container">
-        <div className="card">
-          <div className="header">
-            <div className="txt">LogIn</div>
+      <form className="login-container" id="login-container">  {/* Changed it to a form element */}
+        <div className="card" id="card">
+          <div className="header" id="header">
+            <div className="txt" id ="txt">Log In</div>
           </div>
-          <div className="form">
+          <div className="form" id="form">
             <div>
-              <input type="email" placeholder="Email" />
+              <label htmlFor="email">Email:</label>
+              <input id="email" name="email" type="email" placeholder="someone@enterprisename.com" />
             </div>
             <div>
-              <input type="password" placeholder="Password" />
+              <label htmlFor="">Password:</label>
+              <input id="password" name="password" type="password" placeholder="Enter password" />
             </div>
           </div>
-          <div className="submit-container">
-            <div className="submit">Login</div>
+          <div className="submit-container" id="submit-container">
+            <button className="submit" id="submit">Login</button>
+          </div>
+          <div className="signup-link-container" id="signup-link-container">
+            Don't have an account?&nbsp;
+
+            <span className="signup-link" 
+            id="signup-link" 
+            tabIndex={0} 
+            role="link"
+            onClick={() => navigate('/signup')}>Click here</span> 
+            &nbsp;
+            to register
           </div>
         </div>
-      </div>
+      </form>
     </>
   );
 }
