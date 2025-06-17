@@ -24,7 +24,11 @@ export default function Dashboard(){
                     </button>
                 </div>
                 <div className="current-balance-container" id="current-balance-container">
-                    Current Balance: <span className="current-balance" id="current-balance ">₹ {commafy(balance)}</span>
+                    Current Balance: <span className="current-balance" id="current-balance">₹ {commafy(balance)}</span>
+                </div>
+                <hr className="dashboard-rule-1" id="dashboard-rule-1"/>
+                <div className="transaction-history" id="transaction-history">
+
                 </div>
                 
             </div>
