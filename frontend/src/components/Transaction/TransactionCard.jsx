@@ -7,9 +7,9 @@ export default function TransactionCard(props){
             {/* <div>{props.date}</div>
             <div>{props.title}</div>
             <div>{props.amount}</div> */}
-            <div>date</div>
-            <div>title</div>
-            <div>amount</div>
+            <div>12/3/34</div>
+            <div>Biryani</div>
+            <div>₹200</div>
         </div>
         </>
     )
