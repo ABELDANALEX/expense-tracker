@@ -25,11 +25,11 @@ export default function Login() {
   return (
     <>
       <form className="login-container" id="login-container" onSubmit={handleSubmit}>  {/* Changed it to a form element */}
-        <div className="card" id="card">
-          <div className="header" id="header">
+        <div className="login-card" id="login-card">
+          <div className="login-header" id="login-header">
             <div className="txt" id ="txt">Log In</div>
           </div>
-          <div className="form" id="form">
+          <div className="login-form" id="login-form">
             <div>
               <label htmlFor="email">Email:</label>
               <input id="email" name="email" type="email" placeholder="someone@enterprisename.com" />
@@ -39,8 +39,8 @@ export default function Login() {
               <input id="password" name="password" type="password" placeholder="Enter password" />
             </div>
           </div>
-          <div className="submit-container" id="submit-container">
-            <button className="submit" id="submit" type="submit">Login</button>
+          <div className="login-submit-container" id="login-submit-container">
+            <button className="login-submit" id="login-submit" type="submit">Login</button>
           </div>
           <div className="signup-link-container" id="signup-link-container">
             Don't have an account?
