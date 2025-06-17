@@ -7,20 +7,20 @@ body, html {
     height: 100%;
 }
 
-.ancestor-container{
+.dashboard-ancestor-container{
     display:flex;
     flex-direction: column;
     /* background-color: #333; */
 }
 
-.header-container{
+.dashboard-header-container{
     display:flex;
     justify-content: space-between;
 }
 
-.header-container p{
+.dashboard-header-container p{
     margin-left: 20px;
 }
-.header-container button{
+.dashboard-header-container button{
     display:  inline;
 }
