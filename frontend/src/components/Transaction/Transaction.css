@@ -1,0 +1,24 @@
+.transaction-card{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    background-color: #1c1c1c;
+    color: white;
+    padding: 1rem 1.5rem;
+    margin: 1rem auto;
+    max-width: 60%;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(255, 255,255, 0.05);
+    transition: transform 0.3s ease,box-shadow 0.3s ease;
+}
+
+.transaction-card:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(255, 255,255, 0.1);
+}
+
+.transaction-card>div{
+    text-align: center;
+    font-size: 1.1rem;
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import TransactionCard from "../../components/Transaction/TransactionCard";
 import './Dashboard.css'
 export default function Dashboard(){
 
@@ -46,6 +47,7 @@ export default function Dashboard(){
                     </select>
                 </div>
                 <div className="transaction-history" id="transaction-history">
+                    <TransactionCard/>
                     
                 </div>
                 
