@@ -7,16 +7,16 @@ export default function Dashboard(){
 
     return(
         <>
-            <div className="ancestor-container" id="ancestor-container">
-                <div className="header-container" id="header-container">
-                    <p className="header" id="header">
+            <div className="dashboard-ancestor-container" id="dashboard-ancestor-container">
+                <div className="dashboard-header-container" id="dashboard-header-container">
+                    <p className="dashboard-header" id="dashboard-header">
                         Welcome, {username}!
                     </p>
-                    <button className="signout-button" id="signout-button">
+                    <button className="dashboard-signout-button" id="dashboard-signout-button">
                         SIGN OUT
                     </button>
                 </div>
-                <div className="footer" id="footer"></div>
+                
             </div>
         </>
     )
