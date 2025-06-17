@@ -7,6 +7,9 @@ export default function Welcome({User}){
             <div>
               Welcome, {User}!
             </div>
+            <div className='logout'> 
+                Logout
+            </div>
         </div>
         <div className="underline"></div>
         </>
