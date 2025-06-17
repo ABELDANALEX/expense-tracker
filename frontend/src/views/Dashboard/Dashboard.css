@@ -70,3 +70,11 @@ body, html {
     font-weight: 100;
     color: green;
 }
+
+.dashboard-rule-1 {
+  border: none;                  
+  width: 90vw;
+  height: 1px;                 
+  background-color: #444444;      
+  margin-top: 2em;                
+}
