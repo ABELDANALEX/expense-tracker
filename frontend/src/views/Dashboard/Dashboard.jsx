@@ -2,7 +2,7 @@ import { useState } from "react";
 import './Dashboard.css'
 export default function Dashboard(){
 
-    const firstTime = true; //whether first time login or not
+    
     const username = "John"; //get it from login
     const [balance, setBalance] = useState(100000);
     const [sortOption, setSortOption] = useState("latest")
