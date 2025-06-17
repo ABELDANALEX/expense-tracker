@@ -10,17 +10,63 @@ body, html {
 .dashboard-ancestor-container{
     display:flex;
     flex-direction: column;
+    /* gap: 2em; */
     /* background-color: #333; */
 }
 
 .dashboard-header-container{
     display:flex;
     justify-content: space-between;
+    /* align-items: center; */
+    background-color: #222222;
+    height:  7em;
+    
 }
 
 .dashboard-header-container p{
-    margin-left: 20px;
+    margin-left: 50px;
+    font-size: 3em;
+    font-weight: 700;
+    align-self: center;
 }
+
+.dashboard-header-username{
+    color: blue;    
+}
+
 .dashboard-header-container button{
-    display:  inline;
+    height: 25px;
+    align-self: flex-end;
+    margin-bottom: 1.5em;
+    margin-right: 2em;
+    border:none;
+    outline:  none;
+    background-color: #222222;
+    color: rgb(255, 93, 93);
+    font-weight:lighter ;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.729);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dashboard-header-container button:hover{
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.729);
+    background-color: #212121;
+}
+
+.current-balance-container{
+    background-color: #101015;
+    margin-top: 1em;
+    align-self: center;
+    padding: 0.5em;
+    border-radius: 10px;
+    font-size: 50px;
+    font-weight: 600;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.current-balance{
+    font-weight: 100;
+    color: green;
 }
