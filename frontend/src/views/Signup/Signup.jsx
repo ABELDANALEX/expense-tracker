@@ -28,11 +28,11 @@ export default function Signup() {
   return (
     <>
       <form className="signup-container" id="signup-container" onSubmit={handleSubmit}>
-        <div className="card" id="card">
-          <div className="header" id="header">
+        <div className="signup-card" id="signup-card">
+          <div className="signup-header" id="signup-header">
             <div className="txt">Sign Up</div>
           </div>
-          <div className="form" id="form">
+          <div className="signup-form" id="signup-form">
             <div>
               <label htmlFor="username">Username:</label>
               <input id="username" name="username" type="text" placeholder="Username" />
@@ -65,8 +65,8 @@ export default function Signup() {
               />
             </div>
           </div>
-          <div className="submit-container" id="submit-container">
-            <button className="submit" id="submit" type="submit">Sign Up</button>
+          <div className="signup-submit-container" id="signup-submit-container">
+            <button className="signup-submit" id="signup-submit" type="submit">Sign Up</button>
           </div>
           <div className="login-link-container" id="login-link-container">
             Already have an account? &nbsp;

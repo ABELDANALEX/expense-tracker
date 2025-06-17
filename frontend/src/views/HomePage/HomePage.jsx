@@ -5,18 +5,18 @@ export default function HomePage() {
   const navigate = useNavigate();
   return (
     <>
-      <div className="ancestor-container" id="ancestor-container">
-        <div className="header" id="header">
-          <div className="header-left" id="header-left">
-            <div className="logo" id="logo">
+      <div className="homepage-ancestor-container" id="homepage-ancestor-container">
+        <div className="homepage-header" id="homepage-header">
+          <div className="homepage-header-left" id="homepage-header-left">
+            <div className="homepage-logo" id="homepage-logo">
               💰
             </div>
-            <div className="heading-text" id="heading-text">
+            <div className="homepage-heading-text" id="homepage-heading-text">
               Expense Tracker
             </div>
           </div>
 
-          <div className="links-container" id="links-container">
+          <div className="homepage-links-container" id="homepage-links-container">
             <div
               className="dashboard-link"
               id="dashboard-link"
@@ -46,11 +46,11 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <div className="body-container" id="body-container">
-          <div className="sub-header" id="sub-header">
+        <div className="homepage-body-container" id="homepage-body-container">
+          <div className="homepage-sub-header" id="homepage-sub-header">
             You Earn. We Track.
           </div>
-          <div className="body-text" id="body-text">
+          <div className="homepage-body-text" id="homepage-body-text">
             Take charge of your spending with our all-new expense tracking
             solution. Your expenses under control, start saving smarter today.
           </div>

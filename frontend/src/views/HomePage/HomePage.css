@@ -7,12 +7,12 @@ html,body{
     color: white;
 }
 
-.ancestor-container{
+.homepage-ancestor-container{
     display: flex;
     flex-direction: column;
 }
 
-.header{
+.homepage-header{
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -22,38 +22,38 @@ html,body{
 
 }
 
-.header-left{
+.homepage-header-left{
     display: flex;
     gap: 5px;
     align-items: center;
 }
 
-.logo{
-    font-size: 2rem;
+.homepage-logo{
+    font-size: 3rem;
 }
 
-.heading-text{
-    font-size: 1em;
+.homepage-heading-text{
+    font-size: 2.5em;
     font-weight: 700;
 }
 
-.links-container{
+.homepage-links-container{
     display: flex;
     gap: 1em;
-    font-size: 0.5em;
+    font-size: 1.3em;
     margin-right: 0.5em;
 }
-.links-container div{
+.homepage-links-container div{
     padding: 5px;
 }
-.links-container div:hover{
+.homepage-links-container div:hover{
     cursor: pointer;
     /* text-decoration-line: underline;
     text-decoration-style: solid; */
     text-shadow: 0 0 2px white;
 }
 
-.body-container{
+.homepage-body-container{
     /*  height: 85vh; */
     display: flex;
     flex-direction: column;
@@ -63,12 +63,12 @@ html,body{
     gap: 1rem;
 }
 
-.sub-header{
+.homepage-sub-header{
     font-weight: 900;
     font-size: 5rem;
 }
 
-.body-text{
+.homepage-body-text{
     white-space: normal;
     max-width: 700px;
     font-size: 2rem;

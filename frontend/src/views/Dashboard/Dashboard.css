@@ -1,0 +1,26 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
+}
+
+.ancestor-container{
+    display:flex;
+    flex-direction: column;
+    /* background-color: #333; */
+}
+
+.header-container{
+    display:flex;
+    justify-content: space-between;
+}
+
+.header-container p{
+    margin-left: 20px;
+}
+.header-container button{
+    display:  inline;
+}

@@ -14,7 +14,7 @@ body, html {
     align-items: center;
 }
 
-.card {
+.signup-card {
     background-color: #1c1c1c;
     border-radius: 12px;
     padding: 2rem 2rem;
@@ -22,13 +22,12 @@ body, html {
     width: 350px;
     display: flex;
     flex-direction: column;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 2rem;
 }
 
-.header {
+.signup-header {
     background-color: #1c1c1c;
     font-size: 3rem;
     font-weight: 700;
@@ -36,7 +35,7 @@ body, html {
     color: white;
 }
 
-.form {
+.signup-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,8 +43,16 @@ body, html {
     gap: 1.2rem;
 }
 
-.form input {
+.signup-form div{
+     display: flex;
+    flex-direction: column;
+    gap: 5px;
+   
+}
+
+.signup-form input {
     padding: 0.75rem 1rem;
+    width: 255px;
     background-color: #333;
     border: 1px solid #555;
     border-radius: 8px;
@@ -55,27 +62,29 @@ body, html {
     transition: border-color 0.2s;
 }
 
-.form input:focus {
+.signup-form input:focus {
     border-color: white;
 }
 
-.submit-container {
+.signup-submit-container {
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-.submit {
+.signup-submit {
     padding: 0.7rem 2rem;
+    background-color: #1c1c1c ;
+    color: white;
     border: 1px solid white;
     border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
     transition: 0.3s ease;
     text-align: center;
+    margin-top: 3rem;
 }
 
-.submit:hover {
+.signup-submit:hover {
     background-color: white;
     color: black;
 }
