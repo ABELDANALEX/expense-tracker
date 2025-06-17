@@ -78,3 +78,43 @@ body, html {
   background-color: #444444;      
   margin-top: 2em;                
 }
+
+.history-headings-container{
+    display:flex;
+    justify-content: space-between;
+    margin-top: 1em;
+    color: #555;
+}
+.history-headings-container button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    border: none;
+    outline: none;
+    margin-left: 5.5vw;
+    padding: 0.5em;
+    border-radius: 10%;
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.history-headings-container button div {
+    font-size: 32px;
+    color: #000;
+    line-height: 1;
+}
+
+.history-headings-container button:hover {
+    background-color: #303030;
+}
+
+.transaction-history-order{
+    background-color: #333;
+    border:  none;
+    color: #999;
+    margin-right: 5.5vw;
+    width: 10em;
+
+}
