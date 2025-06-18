@@ -38,7 +38,7 @@ export default function Dashboard(){
                 <hr className="dashboard-rule-1" id="dashboard-rule-1"/>
                 <div className="history-headings-container" id="history-headings-container">
                     <button className="add-newexpense-button" id="add-newexpense-button"><div>+</div></button>
-                    <div><i>Transaction History</i></div>
+                    <div className="transaction-history-heading"><i>Transaction History</i></div>
                     <select className="transaction-history-order" name="transaction-history-order" id="transaction-history-order" value={sortOption} onChange={handleSortChange}>
                         <option value="latest">By date(latest first)</option>
                         <option value="oldest">By date(oldest first)</option>
@@ -47,6 +47,11 @@ export default function Dashboard(){
                     </select>
                 </div>
                 <div className="transaction-history" id="transaction-history">
+                    <TransactionCard/>
+                    <TransactionCard/>
+                    <TransactionCard/>
+                    <TransactionCard/>
+                    <TransactionCard/>
                     <TransactionCard/>
                     
                 </div>
