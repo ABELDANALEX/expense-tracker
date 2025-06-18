@@ -18,7 +18,7 @@ exports.signup = async (req, res) => {
       username: newUser.username,
       email: newUser.email,
       password: hashedPassword,
-      amount: newUser.amount,
+      balance: newUser.balance,
     });
     user.save();
     return res
