@@ -16,6 +16,10 @@ exports.createExpense=async(req,res)=>{
     const expense=req.body
     try{
         const newExpense=new expenses(expense)
+        const user=await users.findById(expense.userId)
+        if(user.balance<expense.amount){
+            return res.status(400).send({message:'Insufficient balance',error:'Insufficient balance'})
+        }
         const savedExpense=await newExpense.save()
         const remainingBalance = await users.updateOne({ _id: expense.userId }, { $inc: { balance: -savedExpense.amount } })
         return res.status(201).send({message:'Expense created successfully',savedExpense})
