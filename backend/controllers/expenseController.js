@@ -1,4 +1,5 @@
 const expenses = require('../models/expenseModel')
+const users = require('../models/userModel')
 
 exports.getAllExpenses= async(req,res)=>{
     const id=req.params.id
@@ -16,6 +17,7 @@ exports.createExpense=async(req,res)=>{
     try{
         const newExpense=new expenses(expense)
         const savedExpense=await newExpense.save()
+        const remainingBalance = await users.updateOne({ _id: expense.userId }, { $inc: { balance: -savedExpense.amount } })
         return res.status(201).send({message:'Expense created successfully',savedExpense})
     }catch(error){
         console.error('Error creating expense',error.message)
@@ -36,3 +38,4 @@ exports.deleteExpense=async(req,res)=>{
         return res.status(500).send({error:'Error deleting expense'})
     }
 }
+
