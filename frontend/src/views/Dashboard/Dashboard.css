@@ -47,11 +47,13 @@ body, html {
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.729);
     border-radius: 4px;
     cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .dashboard-header-container button:hover{
-    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.729);
-    background-color: #212121;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.729);
+    
+    transform: translateY(-1px);
 }
 
 .current-balance-container{
@@ -98,12 +100,18 @@ body, html {
     width: 50px;
     height: 30px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.transaction-history-heading {
+    margin-left: 6em;
 }
 
 .history-headings-container button div {
     font-size: 32px;
     color: #000;
     line-height: 1;
+   
 }
 
 .history-headings-container button:hover {
