@@ -13,15 +13,22 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    role:{
-        type:String,
-        enum: ['admin', 'user'],
-        default: 'user',
+    createdAt: {
+        type: Date,
+        default: () => new Date()
     },
-    amount:{
-        type:Number,
-        required:true,
+    // role:{
+    //     type:String,
+    //     enum: ['admin', 'user'],
+    //     default: 'user',
+    // },
+    balance: {
+        type: Number,
+        default: 0
     }
+
+    //commented out roles as that would make it too complicated
+    //also it would be better to implement amount in another schema
 })
 
 const User = mongoose.model("user", userSchema);
