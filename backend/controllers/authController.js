@@ -41,7 +41,7 @@ exports.login = async (req, res) => {
     if (!isValidPassword) {
       return res.status(401).send({ error: "Invalid username or password" });
     }
-    const payload = { id: existingUser._id, username: existingUser.username, role: existingUser.role }
+    const payload = { id: existingUser._id, username: existingUser.username, balance:existingUser.balance }
     jwt.sign(
         payload,
         process.env.JWT_SECRET,
