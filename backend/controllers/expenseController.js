@@ -47,14 +47,27 @@ exports.editExpense=async(req,res)=>{
                 return res.status(404).send({message:"Expense not found"})
         }  
 
-        if(updateFields.amount){
-            amountDifference=existingExpense.amount-updateFields.amount
+        if(updateFields.amount!==undefined){
+            // amountDifference=existingExpense.amount-updateFields.amount
+            if(updateFields.amount<0){
+                return res.status(400).send({message:'Invalid amount',error:'Invalid amount'})
+            }
+            amountDifference = updateFields.amount - existingExpense.amount
+            
             // const user=await users.findById(existingExpense.userId)
             // const newBalance=user.balance+amountDifference
             // const updatedUser=await users.findByIdAndUpdate(existingExpense.userId,{balance:newBalance},{new:true}) // gives the updates user info after updating the balance
         }
         const user=await users.findById(existingExpense.userId)
-        const newBalance=user.balance+amountDifference
+        if (!user) {
+            return res.status(404).send({ message: "User not found" });
+        }
+
+        const newBalance=user.balance-amountDifference
+        if (newBalance < 0) {
+            return res.status(400).send({ message: "Insufficient balance" });
+        }
+
         const updatedUser=await users.findByIdAndUpdate(existingExpense.userId,{balance:newBalance},{new:true}) // gives the updated user info after updating the balance
         
         const updatedExpense=await expenses.findByIdAndUpdate(id,updateFields,{new:true})
@@ -67,7 +80,6 @@ exports.editExpense=async(req,res)=>{
         console.error('Error updating expense',error.message)
         return res.status(400).send({error:"Error updating expense"})
     }
-
 }
 
 exports.deleteExpense=async(req,res)=>{
