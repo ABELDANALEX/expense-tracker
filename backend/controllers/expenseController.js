@@ -21,8 +21,8 @@ exports.createExpense=async(req,res)=>{
             return res.status(400).send({message:'Insufficient balance',error:'Insufficient balance'})
         }
         const savedExpense=await newExpense.save()
-        const remainingBalance = await users.updateOne({ _id: expense.userId }, { $inc: { balance: -savedExpense.amount } })
-        return res.status(201).send({message:'Expense created successfully',savedExpense})
+        const updatedUser = await users.updateOne({ _id: expense.userId }, { $inc: { balance: -savedExpense.amount } })
+        return res.status(201).send({message:'Expense created successfully',savedExpense, updatedUser}) //send updated User (with remaining balance updated) as well which could be used to update UI immediately
     }catch(error){
         console.error('Error creating expense',error.message)
         return res.status(500).send({error:'Error creating expense'})
@@ -32,11 +32,14 @@ exports.createExpense=async(req,res)=>{
 exports.deleteExpense=async(req,res)=>{
     const id=req.params.id
     try {
-        const deletedExpense = await expenses.findByIdAndDelete({_id:id});
+        const deletedExpense = await expenses.findByIdAndDelete(id); //id should be enough
         if(!deletedExpense){
             return res.status(404).send({message:'Expense not found'})
         }
-        return res.status(200).send({message:'Expense deleted successfully'})
+        const user = await users.findById(deletedExpense.userId)
+        user.balance += deletedExpense.amount
+        const savedUser = await user.save()
+        return res.status(200).send({message:'Expense deleted successfully',savedUser})
     }catch(error){
         console.error('Error deleting expense',error.message)
         return res.status(500).send({error:'Error deleting expense'})
