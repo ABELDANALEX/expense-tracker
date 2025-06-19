@@ -7,4 +7,6 @@ expenseRouter.post('/',expenseController.createExpense)
 
 expenseRouter.delete('/:id',expenseController.deleteExpense)
 
+expenseRouter.patch('/:id',expenseController.editExpense)
+
 module.exports = expenseRouter;

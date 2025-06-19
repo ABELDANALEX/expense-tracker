@@ -29,6 +29,47 @@ exports.createExpense=async(req,res)=>{
     }
 }
 
+exports.editExpense=async(req,res)=>{
+    const id=req.params.id
+    const newExpense=req.body
+
+    const updateFields={}
+    if (newExpense.title !== undefined) updateFields.title=newExpense.title
+    if (newExpense.amount !== undefined) updateFields.amount=newExpense.amount
+    if (newExpense.category !== undefined) updateFields.category=newExpense.category
+    if (newExpense.note !== undefined) updateFields.note=newExpense.note
+    if (newExpense.date !== undefined) updateFields.date=newExpense.date
+
+    try{
+        var amountDifference=0
+        const existingExpense=await expenses.findById(id)
+        if(!existingExpense){
+                return res.status(404).send({message:"Expense not found"})
+        }  
+
+        if(updateFields.amount){
+            amountDifference=existingExpense.amount-updateFields.amount
+            // const user=await users.findById(existingExpense.userId)
+            // const newBalance=user.balance+amountDifference
+            // const updatedUser=await users.findByIdAndUpdate(existingExpense.userId,{balance:newBalance},{new:true}) // gives the updates user info after updating the balance
+        }
+        const user=await users.findById(existingExpense.userId)
+        const newBalance=user.balance+amountDifference
+        const updatedUser=await users.findByIdAndUpdate(existingExpense.userId,{balance:newBalance},{new:true}) // gives the updated user info after updating the balance
+        
+        const updatedExpense=await expenses.findByIdAndUpdate(id,updateFields,{new:true})
+        // if(!updatedExpense){
+        //     return res.status(400).send({message:"Expense not found"})
+        // }
+        return res.status(200).send({message:"Expense updated successfully",updatedExpense,updatedUser})
+
+    }catch(error){
+        console.error('Error updating expense',error.message)
+        return res.status(400).send({error:"Error updating expense"})
+    }
+
+}
+
 exports.deleteExpense=async(req,res)=>{
     const id=req.params.id
     try {
@@ -37,6 +78,9 @@ exports.deleteExpense=async(req,res)=>{
             return res.status(404).send({message:'Expense not found'})
         }
         const user = await users.findById(deletedExpense.userId)
+        if(!user){
+            return res.status(404).send({message:"User not found"})
+        }
         user.balance += deletedExpense.amount
         const savedUser = await user.save()
         return res.status(200).send({message:'Expense deleted successfully',savedUser})
