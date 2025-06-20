@@ -4,9 +4,10 @@ import HomePage from './views/HomePage/HomePage'
 import Login from './views/Login/Login'
 import Signup from './views/Signup/Signup'
 import Dashboard from './views/Dashboard/Dashboard'
+import axios from 'axios'
 
 function App() {
-  
+  axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
 
   return (
     <>
