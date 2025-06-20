@@ -107,9 +107,6 @@ export default function Signup() {
               <input type="number" value={balance} name="balance" onChange={(e)=>{setBalance(e.target.value)}} placeholder="Enter initial balance" />
             </div>
           )}
-          <div className="signup-form">
-            
-          </div>
           <div className="signup-submit-container" id="signup-submit-container">
             <button className="signup-submit" id="signup-submit" type="submit">
               {step===1?"Next":"Sign Up"}
