@@ -1,6 +1,7 @@
 import "./NewModal.css";
 import { set, useForm } from "react-hook-form";
 import { useRef } from "react";
+import axios from "axios";
 
 export default function NewModal({ onClose }) {
   const {
@@ -20,7 +21,7 @@ export default function NewModal({ onClose }) {
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const onSubmit = async (data) => {
     await delay(2000);
-    console.log(data);
+    console.log("/expense", {data,userId:id});
   };
 
   return (
@@ -47,7 +48,7 @@ export default function NewModal({ onClose }) {
             </div>
             <div>
               <label htmlFor="date">Date</label>
-              <input {...register("date",{ required: true })} type="date" />
+              <input {...register("date")} type="date" />
             </div>
             <div>
               <label htmlFor="note">Note</label>
