@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import NewModal from "../../components/Modals/Create new transaction/newModal";
+import UpdateBalanceModal from "../../components/Modals/UpdateBalanceModal/UpdateBalanceModal";
 import TransactionCard from "../../components/Transaction/TransactionCard";
 import "./Dashboard.css";
 import { jwtDecode } from "jwt-decode";
@@ -14,6 +15,7 @@ export default function Dashboard() {
   const [newModal, setNewModal] = useState(false);
   const [balance, setBalance] = useState(0);
   const [sortOption, setSortOption] = useState("latest");
+  const [updateBalanceModal, setUpdateBalanceModal] = useState(false)
 
   const handleSortChange = (e) => {
     const selected = e.target.value;
@@ -106,7 +108,7 @@ export default function Dashboard() {
           id="current-balance-container"
         >
           Current Balance:{" "}
-          <span className="current-balance" id="current-balance">
+          <span className="current-balance" id="current-balance" title="double click to update balance" onDoubleClick={() => setUpdateBalanceModal(true)}>
             ₹ {commafy(balance)}
           </span>
         </div>
@@ -163,7 +165,8 @@ export default function Dashboard() {
           }
           
         </div>
-        {newModal && (
+        <div className="dashboard-modals-container" id="dashboard-modals-container">
+          {newModal && (
           <NewModal
             onClose={() => {
               setNewModal(false);
@@ -171,6 +174,16 @@ export default function Dashboard() {
             }
           />
         )}
+
+        {updateBalanceModal && (
+            <UpdateBalanceModal
+            id={id}
+            setBalance={setBalance}
+            onClose={() => setUpdateBalanceModal(false)}/>
+        )}
+
+        </div>
+
       </div>
     </>
   )

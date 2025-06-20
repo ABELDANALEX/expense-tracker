@@ -43,18 +43,6 @@ export default function NewModal({ onClose }) {
               <input {...register("title",{ required: true })} type="text" />
             </div>
             <div>
-              <label htmlFor="amount">Amount</label>
-              <input {...register("amount",{ required: true })} type="number" />
-            </div>
-            <div>
-              <label htmlFor="date">Date</label>
-              <input {...register("date")} type="date" />
-            </div>
-            <div>
-              <label htmlFor="note">Note</label>
-              <input {...register("note")} type="text" />
-            </div>
-            <div>
                 <label htmlFor="">Category</label>
               <select className="transaction-category" {...register('category', { required: true })}>
                 <option value="groceries">Groceries</option>
@@ -66,6 +54,19 @@ export default function NewModal({ onClose }) {
                 <option value="other">Other</option>
               </select>
             </div>
+            <div>
+              <label htmlFor="amount">Amount</label>
+              <input {...register("amount",{ required: true })} type="number" />
+            </div>
+            <div>
+              <label htmlFor="date">Date</label>
+              <input {...register("date")} type="date" />
+            </div>
+            <div>
+              <label htmlFor="note">Note</label>
+              <input {...register("note")} type="text" />
+            </div>
+            
           </div>
           <div className="submit-container" id="submit-container">
             <div>
