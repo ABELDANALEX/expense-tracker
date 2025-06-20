@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Dashboard() {
+  const [history,setHistory]=useState([])
   const navigate = useNavigate();
   const [username, setUsername] = useState(""); //get it from login
   const [id, setId] = useState(undefined);
@@ -41,7 +42,28 @@ export default function Dashboard() {
         console.log(error)
       }
     }
-    getBalance()
+
+    const getHistory=async ()=>{
+      if(!id)return
+      try{
+        const res=await axios.get(`/expense/${id}`)
+        if(res?.data?.history && Array.isArray(res.data.history)){
+          setHistory(res.data.history)
+          console.log(res.data.history)
+        }
+        else if(res?.data && Array.isArray(res.data)){
+          setHistory(res.data)
+          console.log(history)
+        }
+        else{
+          setHistory([])
+        }
+        }catch(error){
+          console.log(error)
+        }
+      }
+      getBalance()
+      getHistory()
   },[id])
 
   const commafy = (number) => {
@@ -119,18 +141,34 @@ export default function Dashboard() {
           </select>
         </div>
         <div className="transaction-history" id="transaction-history">
-          <TransactionCard />
-          <TransactionCard />
-          <TransactionCard />
-          <TransactionCard />
-          <TransactionCard />
-          <TransactionCard />
+          {
+            Array.isArray(history) && history.length>0 ?(
+              history.map((item, index) =>{
+                return (
+                <div>
+                  <TransactionCard 
+                  key={item._id}
+                  title={item.title}
+                  date={item.date}
+                  amount={item.amount}
+                  category={item.category}
+                />
+                </div>
+                )
+              }
+            )
+          ):(<div>
+            No transactions
+          </div>)
+          }
+          
         </div>
         {newModal && (
           <NewModal
             onClose={() => {
               setNewModal(false);
-            }}
+            }
+            }
           />
         )}
       </div>

@@ -126,3 +126,9 @@ body, html {
     width: 10em;
 
 }
+
+.transaction-history{
+    display: flex;
+    flex-direction: column;
+    gap: 0.03rem;
+}
