@@ -66,7 +66,7 @@ export default function Dashboard() {
       }
       getBalance()
       getHistory()
-  },[id])
+  },[id,balance])
 
   const commafy = (number) => {
     return new Intl.NumberFormat("en-IN").format(number);
@@ -168,6 +168,9 @@ export default function Dashboard() {
         <div className="dashboard-modals-container" id="dashboard-modals-container">
           {newModal && (
           <NewModal
+            id={id}
+            setBalance={setBalance}
+            
             onClose={() => {
               setNewModal(false);
             }

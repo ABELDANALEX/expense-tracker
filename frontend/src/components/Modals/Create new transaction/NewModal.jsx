@@ -3,7 +3,7 @@ import { set, useForm } from "react-hook-form";
 import { useRef } from "react";
 import axios from "axios";
 
-export default function NewModal({ onClose }) {
+export default function NewModal(props) {
   const {
     register,
     handleSubmit,
@@ -11,17 +11,27 @@ export default function NewModal({ onClose }) {
     formState: { errors },
   } = useForm();
 
+
   const modalRef = useRef();
 
   const handleBackdropClick = (e) => {
     if (modalRef.current === e.target) {
-      onClose();
+      props.onClose();
     }
   };
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const onSubmit = async (data) => {
-    await delay(2000);
-    console.log("/expense", {data,userId:id});
+    await delay(2000)
+    try{
+      const res= await axios.post("/expense", {data,userId:props.id})
+      console.log(res.data)
+      props.setBalance(res.data.newBalance)
+      props.onClose()
+    }catch(error){
+      console.log(error)
+    }
+    
+
   };
 
   return (
@@ -80,7 +90,7 @@ export default function NewModal({ onClose }) {
                 className="submit"
                 id="cancel"
                 type="button"
-                onClick={onClose}
+                onClick={props.onClose}
               >
                 Cancel
               </button>

@@ -13,7 +13,8 @@ exports.getAllExpenses= async(req,res)=>{
 }
 
 exports.createExpense=async(req,res)=>{
-    const expense=req.body
+    var expense=req.body.data
+    expense.userId=req.body.userId
     try{
         const newExpense=new expenses(expense)
         const user=await users.findById(expense.userId)
@@ -21,8 +22,10 @@ exports.createExpense=async(req,res)=>{
             return res.status(400).send({message:'Insufficient balance',error:'Insufficient balance'})
         }
         const savedExpense=await newExpense.save()
-        const updatedUser = await users.updateOne({ _id: expense.userId }, { $inc: { balance: -savedExpense.amount } })
-        return res.status(201).send({message:'Expense created successfully',savedExpense, updatedUser}) //send updated User (with remaining balance updated) as well which could be used to update UI immediately
+        user.balance=user.balance-expense.amount
+        const updatedUser = await users.findByIdAndUpdate( expense.userId , {balance:user.balance},{new:true})
+        const newBalance=user.balance
+        return res.status(201).send({message:'Expense created successfully',savedExpense, newBalance}) //send updated User (with remaining balance updated) as well which could be used to update UI immediately
     }catch(error){
         console.error('Error creating expense',error.message)
         return res.status(500).send({error:'Error creating expense'})
