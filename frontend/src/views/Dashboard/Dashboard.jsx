@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewModal from "../../components/Modals/Create new transaction/newModal";
 import TransactionCard from "../../components/Transaction/TransactionCard";
 import "./Dashboard.css";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 export default function Dashboard() {
-  const username = "John"; //get it from login
-  const [newModal,setNewModal]=useState(false)
-  const [balance, setBalance] = useState(100000);
+  const navigate = useNavigate();
+  const [username, setUsername] = useState(""); //get it from login
+  const [id, setId] = useState(undefined);
+  const [newModal, setNewModal] = useState(false);
+  const [balance, setBalance] = useState(0);
   const [sortOption, setSortOption] = useState("latest");
 
   const handleSortChange = (e) => {
@@ -14,9 +20,35 @@ export default function Dashboard() {
     //other stuff goes here
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decoded = jwtDecode(token);
+      setUsername(decoded.username);
+      setId(decoded.id);
+    }else{
+      navigate('/login')
+    }
+  }, []);
+
+  useEffect(()=>{
+    const getBalance=async ()=>{
+      if(!id)return
+      try{
+        const res=await axios.get(`/balance/${id}`)
+        setBalance(res.data.balance)
+      }catch(error){
+        console.log(error)
+      }
+    }
+    getBalance()
+  },[id])
+
   const commafy = (number) => {
     return new Intl.NumberFormat("en-IN").format(number);
   };
+
+  
 
   return (
     <>
@@ -39,7 +71,10 @@ export default function Dashboard() {
           </p>
           <button
             className="dashboard-signout-button"
-            id="dashboard-signout-button"
+            onClick={() => {
+              localStorage.removeItem("token");
+              navigate("/login");
+            }}
           >
             SIGN OUT
           </button>
@@ -58,7 +93,13 @@ export default function Dashboard() {
           className="history-headings-container"
           id="history-headings-container"
         >
-          <button className="add-newexpense-button" id="add-newexpense-button" onClick={()=>{setNewModal(true)}}>
+          <button
+            className="add-newexpense-button"
+            id="add-newexpense-button"
+            onClick={() => {
+              setNewModal(true);
+            }}
+          >
             <div>+</div>
           </button>
           <div className="transaction-history-heading">
@@ -85,8 +126,14 @@ export default function Dashboard() {
           <TransactionCard />
           <TransactionCard />
         </div>
-        {newModal && <NewModal onClose={()=>{setNewModal(false)}}/>}
+        {newModal && (
+          <NewModal
+            onClose={() => {
+              setNewModal(false);
+            }}
+          />
+        )}
       </div>
     </>
-  );
+  )
 }
