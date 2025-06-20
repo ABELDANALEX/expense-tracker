@@ -7,7 +7,7 @@ body, html {
   height: 100%;
 }
 
-.modal-container {
+.update-modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -22,63 +22,36 @@ body, html {
   inset: 0;
 }
 
-.modal-card {
+.update-modal-container {
   background-color: #1c1c1c;
   border-radius: 12px;
   padding: 2rem 2rem;
   box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.225);
-  width: 350px;
+  width: 550px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   gap: 1rem;
 }
 
-.newModal-header {
+.update-modal-container h2 {
   font-size: 2rem;
   font-weight: 700;
   text-align: center;
-  color: rgb(154, 190, 151);
-}
-
-.transaction-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1.2rem;
-}
-
-.transaction-form div {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.transaction-form input {
-  padding: 0.75rem 1rem;
-  width: 255px;
-  background-color: #333;
-  border: 1px solid #555;
-  border-radius: 8px;
   color: white;
-  font-size: 1rem;
-  outline: none;
-  transition: border-color 0.2s;
+  color:rgb(59, 59, 144);
 }
 
-.transaction-form input:focus {
-  border-color: white;
-}
-
- .submit-container {
+ .update-modal-buttons {
     display: flex;
     flex-direction: row;
     gap: 1px;
+    justify-content: flex-end;
+    gap: 1em
 }
 
-.submit {   
+.update {   
     padding: 0.7rem 2rem;
     background-color: #1c1c1c ;
     color: white;
@@ -91,35 +64,43 @@ body, html {
     margin-top: 3rem;
 }
 
-.submit:hover {
+.cancel {   
+    padding: 0.7rem 2rem;
+    background-color: #1c1c1c ;
+    color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.update:hover {
     background-color: white;
     color: black;
 } 
 
-#cancel:hover{
+.cancel:hover{
     background-color: red;
     color:white;
     border: red;
 }
 
-.transaction-category {
+
+.update-modal-container input {
   padding: 0.75rem 1rem;
-  width: 255px;
+  /* width: 255px; */
   background-color: #333;
   border: 1px solid #555;
   border-radius: 8px;
   color: white;
   font-size: 1rem;
   outline: none;
-  appearance: none; /* Remove default arrow */
-  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-  background-repeat: no-repeat;
-  background-position-x: 230px;
-  background-position-y: center;
-  cursor: pointer;
   transition: border-color 0.2s;
 }
 
-.transaction-category:focus {
+.update-modal-container input:focus {
   border-color: white;
 }

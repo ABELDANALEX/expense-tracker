@@ -71,6 +71,13 @@ body, html {
 .current-balance{
     font-weight: 100;
     color: green;
+    transition: color 0.3s ease;
+    user-select:none
+}
+
+.current-balance:hover{
+    color:rgb(2, 164, 2);
+    cursor: pointer;
 }
 
 .dashboard-rule-1 {
