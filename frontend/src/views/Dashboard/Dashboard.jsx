@@ -101,6 +101,7 @@ export default function Dashboard() {
           <button
             className="dashboard-signout-button"
             onClick={() => {
+              if (!window.confirm("Are you sure you want to sign out?")) return
               localStorage.removeItem("token");
               navigate("/login");
             }}
