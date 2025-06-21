@@ -10,9 +10,9 @@ const Pagination = (props) => {
     <div className="pagination">
       {pages.map((item, index) => {
         return (
-          <div>
+          <div key={index}>
             <button
-              key={index}
+              
               onClick={() => {
                 props.setCurrentPage(item);
               }}
