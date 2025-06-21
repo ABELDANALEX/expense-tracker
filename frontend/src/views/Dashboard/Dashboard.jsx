@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import NumberFlow from '@number-flow/react'
+import EditDelete from "../../components/Modals/EditDeleteModal/EditDelete";
 import NewModal from "../../components/Modals/Create new transaction/newModal";
 import UpdateBalanceModal from "../../components/Modals/UpdateBalanceModal/UpdateBalanceModal";
 import TransactionCard from "../../components/Transaction/TransactionCard";
@@ -11,7 +12,7 @@ import axios from "axios";
 
 export default function Dashboard() {
   const [history, setHistory] = useState([]);
-  const [updateDelete,setUpdateDelete]=useState(false)
+  const [updateDelete,setUpdateDelete]=useState(null)
   const navigate = useNavigate();
   const [username, setUsername] = useState(""); //get it from login
   const [id, setId] = useState(undefined);
@@ -181,14 +182,14 @@ export default function Dashboard() {
             // const page = history.slice(((currentPage-1)*1,currentPage*transactionsPerPage))
             page.map((item, index) => {
               return (
-                <div>
+                <div key={item._id}>
                   <TransactionCard
-                    key={item._id}
+                    id={item._id}
                     title={item.title}
                     date={item.date}
                     amount={item.amount}
                     category={item.category}
-                    // onClick={setUpdateDelete(true)}
+                    onClick={() => setUpdateDelete(item)}
                   />
                 </div>
               );
@@ -227,6 +228,14 @@ export default function Dashboard() {
               id={id}
               setBalance={setBalance}
               onClose={() => setUpdateBalanceModal(false)}
+            />
+          )}
+
+          {updateDelete && (
+            <EditDelete
+              transaction={updateDelete}
+              onClose={() => setUpdateDelete(null)}
+              setBalance={setBalance}
             />
           )}
         </div>

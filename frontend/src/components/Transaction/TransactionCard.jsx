@@ -11,7 +11,7 @@ export default function TransactionCard(props){
     const time = timez.slice(0, 5);
     return(
         <>
-        <div key={props.key} className="transaction-card">
+        <div className="transaction-card" onClick={props.onClick}>
             <div className="transaction-card-ist">
                 <div className="transaction-card-date" id="transaction-card-date">{onlyDate}</div>
                 <div className="transaction-card-time" >{time}</div> 
