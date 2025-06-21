@@ -188,7 +188,7 @@ export default function Dashboard() {
                     date={item.date}
                     amount={item.amount}
                     category={item.category}
-                    onClick={setUpdateDelete(true)}
+                    // onClick={setUpdateDelete(true)}
                   />
                 </div>
               );
