@@ -169,7 +169,7 @@ export default function Dashboard() {
               );
             })
           ) : (
-            <div>No transactions</div>
+            <div className="no-transactions">No transactions</div>
           )}
         </div>
         <div className="history-footer">
