@@ -23,7 +23,16 @@ export default function Dashboard() {
   const handleSortChange = (e) => {
     const selected = e.target.value;
     setSortOption(selected);
-    //other stuff goes here
+    setHistory((prevH) => {
+      const arr = [...prevH]
+      if (selected === "latest") arr.sort((a,b) => new Date(b.date) - new Date(a.date))
+      else if (selected === "oldest") arr.sort((a,b) => new Date(a.date) - new Date(b.date))
+      else if (selected === "high") arr.sort ((a,b) => b.amount - a.amount) 
+      else if (selected === "low") arr.sort ((a,b) => a.amount - b.amount) 
+
+      return arr
+    })
+    setCurrentPage(1)
   };
 
   useEffect(() => {
@@ -38,6 +47,17 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
+    const sortHisRealTime = (history) =>{
+      const arr = [...history]
+      if (sortOption === "latest") arr.sort((a,b) => new Date(b.date) - new Date(a.date))
+      else if (sortOption === "oldest") arr.sort((a,b) => new Date(a.date) - new Date(b.date))
+      else if (sortOption === "high") arr.sort ((a,b) => b.amount - a.amount) 
+      else if (sortOption === "low") arr.sort ((a,b) => a.amount - b.amount) 
+
+      return arr
+
+    }
+
     const getBalance = async () => {
       if (!id) return;
       try {
@@ -53,10 +73,10 @@ export default function Dashboard() {
       try {
         const res = await axios.get(`/expense/${id}`);
         if (res?.data?.history && Array.isArray(res.data.history)) {
-          setHistory(res.data.history);
+          setHistory(sortHisRealTime(res.data.history));
           console.log(res.data.history);
         } else if (res?.data && Array.isArray(res.data)) {
-          setHistory(res.data);
+          setHistory(sortHisRealTime(res.data));
           console.log(history);
         } else {
           setHistory([]);
