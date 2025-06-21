@@ -1,10 +1,14 @@
 import './Transaction.css'
 
 export default function TransactionCard(props){
-    const dateString =props.date;
-    const onlyDate = new Date(dateString).toISOString().split('T')[0];
-    const timez=new Date(dateString).toISOString().split('T')[1];
-    const time = timez.slice(0,5);
+    const dateString = props.date;
+    const originalDate = new Date(dateString);
+    const istOffsetMs = 5.5 * 60 * 60 * 1000;
+    const istDate = new Date(originalDate.getTime() + istOffsetMs);
+
+    const onlyDate = istDate.toISOString().split('T')[0];
+    const timez = istDate.toISOString().split('T')[1];
+    const time = timez.slice(0, 5);
     return(
         <>
         <div key={props.key} className="transaction-card">

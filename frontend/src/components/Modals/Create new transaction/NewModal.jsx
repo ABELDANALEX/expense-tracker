@@ -69,10 +69,10 @@ export default function NewModal(props) {
               <label htmlFor="amount">Amount</label>
               <input {...register("amount",{ required: true })} type="number" />
             </div>
-            <div>
+            {/* <div>
               <label htmlFor="date">Date</label>
               <input {...register("date")} type="date" />
-            </div>
+            </div> */}
             <div>
               <label htmlFor="note">Note</label>
               <input {...register("note")} type="text" />
