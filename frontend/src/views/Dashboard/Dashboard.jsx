@@ -18,7 +18,7 @@ export default function Dashboard() {
   const [sortOption, setSortOption] = useState("latest");
   const [updateBalanceModal, setUpdateBalanceModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const transactionsPerPage = 5;
+  const transactionsPerPage = 6;
 
   const handleSortChange = (e) => {
     const selected = e.target.value;
@@ -173,6 +173,9 @@ export default function Dashboard() {
           )}
         </div>
         <div className="history-footer">
+          <div>
+            Showing {startIndex+1}-{Math.min(endIndex,history.length)} of {history.length} transactions
+          </div>
           <Pagination
             totalItems={history.length}
             itemsPerPage={transactionsPerPage}

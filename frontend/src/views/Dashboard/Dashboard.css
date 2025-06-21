@@ -140,9 +140,18 @@ body, html {
     gap: 0.03rem;
 }
 
-.history-footer{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    margin-top: 1.3rem;
+.history-footer {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  align-items: center;
+  margin-top: 1.3rem;
+  padding: 0 2rem;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+
+.history-footer > div {
+  font-size: 1rem;
+  color: #333;
 }
