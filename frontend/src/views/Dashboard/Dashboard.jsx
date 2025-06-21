@@ -2,20 +2,23 @@ import { useEffect, useState } from "react";
 import NewModal from "../../components/Modals/Create new transaction/newModal";
 import UpdateBalanceModal from "../../components/Modals/UpdateBalanceModal/UpdateBalanceModal";
 import TransactionCard from "../../components/Transaction/TransactionCard";
+import Pagination from "../../components/Pagination/Pagination";
 import "./Dashboard.css";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Dashboard() {
-  const [history,setHistory]=useState([])
+  const [history, setHistory] = useState([]);
   const navigate = useNavigate();
   const [username, setUsername] = useState(""); //get it from login
   const [id, setId] = useState(undefined);
   const [newModal, setNewModal] = useState(false);
   const [balance, setBalance] = useState(0);
   const [sortOption, setSortOption] = useState("latest");
-  const [updateBalanceModal, setUpdateBalanceModal] = useState(false)
+  const [updateBalanceModal, setUpdateBalanceModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const transactionsPerPage = 5;
 
   const handleSortChange = (e) => {
     const selected = e.target.value;
@@ -29,50 +32,52 @@ export default function Dashboard() {
       const decoded = jwtDecode(token);
       setUsername(decoded.username);
       setId(decoded.id);
-    }else{
-      navigate('/login')
+    } else {
+      navigate("/login");
     }
   }, []);
 
-  useEffect(()=>{
-    const getBalance=async ()=>{
-      if(!id)return
-      try{
-        const res=await axios.get(`/balance/${id}`)
-        setBalance(res.data.balance)
-      }catch(error){
-        console.log(error)
+  useEffect(() => {
+    const getBalance = async () => {
+      if (!id) return;
+      try {
+        const res = await axios.get(`/balance/${id}`);
+        setBalance(res.data.balance);
+      } catch (error) {
+        console.log(error);
       }
-    }
+    };
 
-    const getHistory=async ()=>{
-      if(!id)return
-      try{
-        const res=await axios.get(`/expense/${id}`)
-        if(res?.data?.history && Array.isArray(res.data.history)){
-          setHistory(res.data.history)
-          console.log(res.data.history)
+    const getHistory = async () => {
+      if (!id) return;
+      try {
+        const res = await axios.get(`/expense/${id}`);
+        if (res?.data?.history && Array.isArray(res.data.history)) {
+          setHistory(res.data.history);
+          console.log(res.data.history);
+        } else if (res?.data && Array.isArray(res.data)) {
+          setHistory(res.data);
+          console.log(history);
+        } else {
+          setHistory([]);
         }
-        else if(res?.data && Array.isArray(res.data)){
-          setHistory(res.data)
-          console.log(history)
-        }
-        else{
-          setHistory([])
-        }
-        }catch(error){
-          console.log(error)
-        }
+      } catch (error) {
+        console.log(error);
       }
-      getBalance()
-      getHistory()
-  },[id,balance])
+    };
+    getBalance();
+    getHistory();
+  }, [id, balance]);
 
   const commafy = (number) => {
     return new Intl.NumberFormat("en-IN").format(number);
   };
 
-  
+  const startIndex = (currentPage - 1) * transactionsPerPage
+  const endIndex = currentPage * transactionsPerPage
+  const page = history.slice(startIndex, endIndex)
+
+
 
   return (
     <>
@@ -108,7 +113,12 @@ export default function Dashboard() {
           id="current-balance-container"
         >
           Current Balance:{" "}
-          <span className="current-balance" id="current-balance" title="double click to update balance" onDoubleClick={() => setUpdateBalanceModal(true)}>
+          <span
+            className="current-balance"
+            id="current-balance"
+            title="double click to update balance"
+            onDoubleClick={() => setUpdateBalanceModal(true)}
+          >
             ₹ {commafy(balance)}
           </span>
         </div>
@@ -143,51 +153,56 @@ export default function Dashboard() {
           </select>
         </div>
         <div className="transaction-history" id="transaction-history">
-          {
-            Array.isArray(history) && history.length>0 ?(
-              history.map((item, index) =>{
-                return (
+          {Array.isArray(page) && page.length > 0 ? (
+            // const page = history.slice(((currentPage-1)*1,currentPage*transactionsPerPage))
+            page.map((item, index) => {
+              return (
                 <div>
-                  <TransactionCard 
-                  key={item._id}
-                  title={item.title}
-                  date={item.date}
-                  amount={item.amount}
-                  category={item.category}
-                />
+                  <TransactionCard
+                    key={item._id}
+                    title={item.title}
+                    date={item.date}
+                    amount={item.amount}
+                    category={item.category}
+                  />
                 </div>
-                )
-              }
-            )
-          ):(<div>
-            No transactions
-          </div>)
-          }
-          
+              );
+            })
+          ) : (
+            <div>No transactions</div>
+          )}
         </div>
-        <div className="dashboard-modals-container" id="dashboard-modals-container">
-          {newModal && (
-          <NewModal
-            id={id}
-            setBalance={setBalance}
-            
-            onClose={() => {
-              setNewModal(false);
-            }
-            }
+        <div className="history-footer">
+          <Pagination
+            totalItems={history.length}
+            itemsPerPage={transactionsPerPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
           />
-        )}
-
-        {updateBalanceModal && (
-            <UpdateBalanceModal
-            id={id}
-            setBalance={setBalance}
-            onClose={() => setUpdateBalanceModal(false)}/>
-        )}
-
         </div>
+        <div
+          className="dashboard-modals-container"
+          id="dashboard-modals-container"
+        >
+          {newModal && (
+            <NewModal
+              id={id}
+              setBalance={setBalance}
+              onClose={() => {
+                setNewModal(false);
+              }}
+            />
+          )}
 
+          {updateBalanceModal && (
+            <UpdateBalanceModal
+              id={id}
+              setBalance={setBalance}
+              onClose={() => setUpdateBalanceModal(false)}
+            />
+          )}
+        </div>
       </div>
     </>
-  )
+  );
 }

@@ -21,14 +21,15 @@ export default function NewModal(props) {
   };
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const onSubmit = async (data) => {
-    await delay(2000)
+    // await delay(2000)
     try{
       const res= await axios.post("/expense", {data,userId:props.id})
       console.log(res.data)
       props.setBalance(res.data.newBalance)
       props.onClose()
     }catch(error){
-      console.log(error)
+      console.log(error.response.data.error)
+      alert(error.response.data.message)
     }
     
 
