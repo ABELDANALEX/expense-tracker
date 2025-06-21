@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import NumberFlow from '@number-flow/react'
 import NewModal from "../../components/Modals/Create new transaction/newModal";
 import UpdateBalanceModal from "../../components/Modals/UpdateBalanceModal/UpdateBalanceModal";
 import TransactionCard from "../../components/Transaction/TransactionCard";
@@ -10,6 +11,7 @@ import axios from "axios";
 
 export default function Dashboard() {
   const [history, setHistory] = useState([]);
+  const [updateDelete,setUpdateDelete]=useState(false)
   const navigate = useNavigate();
   const [username, setUsername] = useState(""); //get it from login
   const [id, setId] = useState(undefined);
@@ -140,7 +142,8 @@ export default function Dashboard() {
             title="double click to update balance"
             onDoubleClick={() => setUpdateBalanceModal(true)}
           >
-            ₹ {commafy(balance)}
+            ₹ <NumberFlow value={balance} format={(val) => commafy(val)} />
+
           </span>
         </div>
         <hr className="dashboard-rule-1" id="dashboard-rule-1" />
@@ -185,6 +188,7 @@ export default function Dashboard() {
                     date={item.date}
                     amount={item.amount}
                     category={item.category}
+                    onClick={setUpdateDelete(true)}
                   />
                 </div>
               );
