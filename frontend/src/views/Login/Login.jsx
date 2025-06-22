@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { set } from "react-hook-form";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ export default function Login() {
 
 
     if (!email || !password) {
-      window.alert("Please fill in both fields.");
+      toast.warn("Please fill in both fields.");
       return;
     }
 
@@ -26,9 +26,9 @@ export default function Login() {
       const message=result.data.message
       localStorage.setItem("token",token)
       navigate("/dashboard")
-      alert(message)
+      toast.success(message)
     }).catch((err) => {
-      alert(err.response.data.error)
+      toast.error(err.response.data.error)
       console.log(err.response.data.error)
     });
   };

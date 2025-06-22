@@ -8,6 +8,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import "./Dashboard.css";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 export default function Dashboard() {
@@ -126,6 +127,7 @@ export default function Dashboard() {
             onClick={() => {
               if (!window.confirm("Are you sure you want to sign out?")) return
               localStorage.removeItem("token");
+              toast.success("Signed out successfully")
               navigate("/login");
             }}
           >

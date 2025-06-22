@@ -1,8 +1,7 @@
 import { useState } from "react";
 import "./Signup.css";
-
+import { toast } from "react-toastify";
 import axios from "axios";
-
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
@@ -18,17 +17,17 @@ export default function Signup() {
     e.preventDefault();
 
     if (!username || !email || !password || !confirmPassword) {
-      window.alert("Please fill in all fields.");
+      toast.warn("Please fill in all fields.");
       return;
     }
 
     if (password !== confirmPassword) {
-      window.alert("Passwords do not match");
+      toast.warn("Passwords do not match");
       return;
     }
 
     try{
-      const checkData = {username: username, email: email}
+      const checkData = {username: username, email: email,password :password}
       const response = await axios.post("/auth/checkuser", checkData)
       // if (response.data.exists){
       //   window.alert(response.data.error)
@@ -39,14 +38,14 @@ export default function Signup() {
       setStep(2);
     }catch(error){
       console.error(error)
-      window.alert(error?.response?.data?.error || "Some error occurred, please try again after some time.")
+      toast.error(error?.response?.data?.message || "Some error occurred, please try again after some time.")
     }
   };
 
   const handleBalanceSubmit = async (e) => {
     e.preventDefault();
     if (!balance || isNaN(balance) || Number(balance) < 0){
-      window.alert("Please enter a valid balance");return
+      toast.warn("Please enter a valid balance");return
     }
     const data={username,email,password,balance:Number(balance)}
     try{
@@ -54,10 +53,10 @@ export default function Signup() {
       console.log(response.data)
       const token = response.data.accessToken
       localStorage.setItem("token", token)
-      alert("Sign up successful")
+      toast.success("Sign up successful")
       navigate("/dashboard");
     }catch(error){
-      window.alert(error?.response?.data?.error || "Some error occurred")
+      toast.error(error.response.data.message || "Some error occurred")
       console.error(error);
     }
   };

@@ -22,6 +22,7 @@ exports.updateBalance=async(req,res)=>{
         if(!user){
             return res.status(404).json({message:'User not found'})
         }
+        if( amount<=0)return res.status(400).send({message:'Balance must be greater than 0'})
         const balance=user.balance+amount
         const updatedUser=await User.findByIdAndUpdate(id,{balance:balance},{new:true})
         return res.status(200).send({message:'Balance updated successfully',updatedUser})
