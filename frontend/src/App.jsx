@@ -5,6 +5,8 @@ import Login from './views/Login/Login'
 import Signup from './views/Signup/Signup'
 import Dashboard from './views/Dashboard/Dashboard'
 import axios from 'axios'
+import { ToastContainer ,Slide} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
@@ -19,6 +21,19 @@ function App() {
         <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
      </Router>
+     <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop
+      closeOnClick={false}
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+      transition={Slide}
+    />
     </>
   )
 }

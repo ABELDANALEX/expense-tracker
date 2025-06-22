@@ -2,6 +2,7 @@ import axios from "axios";
 import "./EditDelete.css";
 import { useRef, useState, useEffect } from "react";
 import { set } from "react-hook-form";
+import { toast } from "react-toastify";
 
 export default function EditDelete({setBalance, transaction, onClose }) {
   const modalRef = useRef();
@@ -31,10 +32,11 @@ export default function EditDelete({setBalance, transaction, onClose }) {
         const res=await axios.patch(`/expense/${transaction._id}`,editedTransaction)
         console.log(res.data)
         setBalance(res.data.updatedUser.balance)
+        toast.success(res.data.message)
         setIsEditing(false);
         onClose()
     } catch (error) {
-        alert(error.response.data.message)
+        toast.error(error.response.data.message)
         console.log(error)
     }
   }
@@ -45,10 +47,11 @@ export default function EditDelete({setBalance, transaction, onClose }) {
         const res=await axios.delete(`/expense/${transaction._id}`)
         console.log(res.data)
         setBalance(res.data.savedUser.balance)
-        alert(res.data.message)
+        toast.success(res.data.message)
         onClose()
     } catch (error) {
         console.log(error)
+        toast.error(error.response.data.error)
     }
   }
 

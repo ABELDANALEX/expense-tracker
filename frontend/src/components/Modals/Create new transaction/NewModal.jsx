@@ -2,6 +2,7 @@ import "./NewModal.css";
 import { set, useForm } from "react-hook-form";
 import { useRef } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function NewModal(props) {
   const {
@@ -11,6 +12,10 @@ export default function NewModal(props) {
     formState: { errors },
   } = useForm();
 
+  const onError = (formErrors) => {
+  if (formErrors.title) toast.warn("Title is required.");
+  else if (formErrors.amount) toast.warn("Amount is required.");
+  };
 
   const modalRef = useRef();
 
@@ -23,17 +28,18 @@ export default function NewModal(props) {
   const onSubmit = async (data) => {
     const amount = Number(data.amount)
     if (isNaN(amount) || amount <=0){
-      alert("Amount cannot be negative")
+      toast.error("Amount cannot be negative")
       return
     }
     try{
       const res= await axios.post("/expense", {data,userId:props.id})
       console.log(res.data)
       props.setBalance(res.data.newBalance)
+      toast.success(res.data.message)
       props.onClose()
     }catch(error){
       console.log(error.response.data.error)
-      alert(error.response.data.message)
+      toast.error(error.response.data.message)
     }
     
 
@@ -46,7 +52,7 @@ export default function NewModal(props) {
         ref={modalRef}
         onClick={handleBackdropClick}
       >
-        <form className="modal-card" onSubmit={handleSubmit(onSubmit)}>
+        <form className="modal-card" onSubmit={handleSubmit(onSubmit,onError)}>
           <div className="newModal-header" id="newModal-header">
             <div className="txt" id="txt">
               Create transaction

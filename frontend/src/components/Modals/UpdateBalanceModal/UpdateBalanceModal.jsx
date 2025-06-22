@@ -1,12 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import './UpdateBalanceModal.css'
 
 export default function UpdateBalanceModal(props){
-    const [amount, setAmount] = useState("")
+    const [amount, setAmount] = useState(undefined)
 
     const handleUpdate = async() => {
-        if(!props.id || isNaN(amount)) return
+        if(!props.id || isNaN(amount)) return toast.error('Balance must be a number')
 
         try{
             const res = await axios.patch("/balance",
@@ -16,9 +17,12 @@ export default function UpdateBalanceModal(props){
                 }
             )
             props.setBalance(res.data.updatedUser.balance)
+            console.log(res)
+            toast.success(res.data.message)
             props.onClose()
-        }catch(err){
-            console.log("Error updating balance",err)
+        }catch(error){
+            console.log(error)
+            toast.error(error.data.response.message)
         }
     }
 
