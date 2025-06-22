@@ -8,7 +8,7 @@ exports.getAllExpenses= async(req,res)=>{
         return res.status(200).send({history:history})
     }catch(error){
         console.error('Error fetching expenses history',error.message)
-        res.status(500).json({message:'Error fetching expenses history',error})
+        res.status(500).send({message:'Error fetching expenses history'})
     }
 }
 
