@@ -21,7 +21,11 @@ export default function NewModal(props) {
   };
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const onSubmit = async (data) => {
-    // await delay(2000)
+    const amount = Number(data.amount)
+    if (isNaN(amount) || amount <=0){
+      alert("Amount cannot be negative")
+      return
+    }
     try{
       const res= await axios.post("/expense", {data,userId:props.id})
       console.log(res.data)
