@@ -39,7 +39,7 @@ export default function Signup() {
       setStep(2);
     }catch(error){
       console.error(error)
-      window.alert(error?.response?.data?.error || "Some error occured, please try again after some time.")
+      window.alert(error?.response?.data?.error || "Some error occurred, please try again after some time.")
     }
   };
 
@@ -57,6 +57,7 @@ export default function Signup() {
       alert("Sign up successful")
       navigate("/dashboard");
     }catch(error){
+      window.alert(error?.response?.data?.error || "Some error occurred")
       console.error(error);
     }
   };

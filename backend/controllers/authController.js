@@ -5,9 +5,28 @@ const jwt = require("jsonwebtoken");
 exports.signup = async (req, res) => {
   try {
     const newUser = req.body;
-    if (newUser.balance < 0){
-      return res.status(400).send({message:"Balance cannot be negative"})
+    
+    const unameRegex = /^[a-zA-Z0-9_]*$/
+    if(!unameRegex.test(newUser.username)){
+      return res.status(400).send({error:"Username can only contain letters, numbers and underscore"})
     }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if(!emailRegex.test(newUser.email)){
+      return res.status(400).send({error:"Invalid email"})
+    }
+
+
+    const pwdRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_\-+=])[^\s]{8,}$/
+    if(!pwdRegex.test(newUser.password)){
+      return res.status(400).send({error:"Password must contain atleast \n\t-one uppercase letter \n\t-one lowercase letter \n\t-one digit \n\t-one special character \nAdditionally it must be atleast 8 characters long and shouldn't contain whitespaces"})
+    }
+
+    if (isNaN(newUser.balance) || newUser.balance < 0){
+      return res.status(400).send({error:"Invalid input for balance"})
+    }
+
+
     const takenUserEmail = await User.findOne({ email: newUser.email });
     const takenUsername = await User.findOne({ username: newUser.username });
     if (takenUserEmail || takenUsername) {
@@ -77,8 +96,24 @@ exports.login = async (req, res) => {
 
 exports.checkUser = async (req, res) => {
   const user = req.body
+
+  const unameRegex = /^[a-zA-Z0-9_]*$/
+  if(!unameRegex.test(user.username)){
+    return res.status(400).send({error:"Username can only contain letters, numbers and underscore"})
+  }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if(!emailRegex.test(user.email)){
+      return res.status(400).send({error:"Invalid email"})
+    }
+
+
+    const pwdRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_\-+=])[^\s]{8,}$/
+    if(!pwdRegex.test(user.password)){
+      return res.status(400).send({error:"Password must contain atleast \n\t-one uppercase letter \n\t-one lowercase letter \n\t-one digit \n\t-one special character \nAdditionally it must be atleast 8 characters long and shouldn't contain whitespaces"})
+    }
   const takenUserEmail = await User.findOne({email: user.email})
   const takenUserName = await User.findOne({username: user.username})
+
   if (takenUserName || takenUserEmail){
     return res.status(403).send({exists: true, error: "Username or Email already registered" });
   }
