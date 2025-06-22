@@ -90,7 +90,7 @@ export default function Dashboard() {
     };
     getBalance();
     getHistory();
-  }, [id, balance]);
+  }, [id, balance, history, sortOption]);
 
   const commafy = (number) => {
     return new Intl.NumberFormat("en-IN").format(number);

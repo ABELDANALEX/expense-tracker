@@ -11,7 +11,7 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [balance, setBalance] = useState(undefined);
+  const [balance, setBalance] = useState("");
   const [step, setStep] = useState(1); //step 1 for creds and step 2 for taking the initial balance
 
   const handleCredSubmit = async (e) => {
@@ -27,7 +27,20 @@ export default function Signup() {
       return;
     }
 
-    setStep(2);
+    try{
+      const checkData = {username: username, email: email}
+      const response = await axios.post("/auth/checkuser", checkData)
+      // if (response.data.exists){
+      //   window.alert(response.data.error)
+      //   return;
+      // } automatically goes to error when it is thrown
+
+
+      setStep(2);
+    }catch(error){
+      console.error(error)
+      window.alert(error?.response?.data?.error || "Some error occured, please try again after some time.")
+    }
   };
 
   const handleBalanceSubmit = async (e) => {
@@ -39,8 +52,10 @@ export default function Signup() {
     try{
       const response = await axios.post(`/auth/signup`,data)
       console.log(response.data)
-      navigate("/login");
+      const token = response.data.accessToken
+      localStorage.setItem("token", token)
       alert("Sign up successful")
+      navigate("/dashboard");
     }catch(error){
       console.error(error);
     }
