@@ -28,7 +28,7 @@ export default function Login() {
       navigate("/dashboard")
       toast.success(message)
     }).catch((err) => {
-      toast.error(err.response.data.error)
+      toast.error(err?.response?.data?.error || "Some error occurred. Please try again after some time.")
       console.log(err.response.data.error)
     });
   };

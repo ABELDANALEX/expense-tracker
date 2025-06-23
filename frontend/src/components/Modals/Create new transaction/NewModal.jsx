@@ -38,8 +38,8 @@ export default function NewModal(props) {
       toast.success(res.data.message)
       props.onClose()
     }catch(error){
-      console.log(error.response.data.error)
-      toast.error(error.response.data.message)
+      console.log(error?.response?.data?.error)
+      toast.error(error?.response?.data?.error || "Something went wrong")
     }
     
 
