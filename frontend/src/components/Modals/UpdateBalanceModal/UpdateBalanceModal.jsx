@@ -33,7 +33,6 @@ export default function UpdateBalanceModal(props){
                 Amount:<input type="text" 
                 value={amount} 
                 onChange={(e) => setAmount(e.target.value)}
-                pattern="[0-9]*"
                 placeholder="Enter the amount to top up"/>
 
                 <div className="update-modal-buttons">
