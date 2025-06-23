@@ -38,7 +38,7 @@ export default function Signup() {
       setStep(2);
     }catch(error){
       console.error(error)
-      toast.error(error?.response?.data?.message || "Some error occurred, please try again after some time.")
+      toast.error(error?.response?.data?.error || "Some error occurred, please try again after some time.")
     }
   };
 
@@ -56,7 +56,7 @@ export default function Signup() {
       toast.success("Sign up successful")
       navigate("/dashboard");
     }catch(error){
-      toast.error(error.response.data.message || "Some error occurred")
+      toast.error(error?.response?.data?.error || "Some error occurred")
       console.error(error);
     }
   };

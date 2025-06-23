@@ -28,7 +28,7 @@ export default function NewModal(props) {
   const onSubmit = async (data) => {
     const amount = Number(data.amount)
     if (isNaN(amount) || amount <=0){
-      toast.error("Amount cannot be negative")
+      toast.error("Amount should  be a positive number")
       return
     }
     try{
