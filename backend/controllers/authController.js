@@ -64,13 +64,14 @@ exports.signup = async (req, res) => {
 
   } catch (error) {
     console.error("Error registering user:", error.message);
-    return res.status(400).send({ error: "Error registering user" });
+    return res.status(500).send({ error: "Error registering user" });
   }
 };
 
 exports.login = async (req, res) => {
 
-    const user = req.body;
+    try{
+      const user = req.body;
     const existingUser = await User.findOne({ email: user.email });
     if (!existingUser) {
       return res.status(401).send({ error: "Invalid username or password" });
@@ -92,10 +93,15 @@ exports.login = async (req, res) => {
             return res.status(200).send({ message: 'Successfully logged in', accessToken: token })
         }
     )
+    }catch(error){
+      console.error("Error logging in", error.message)
+      return res.status(400).send({error: "Error logging in"})
+    }
 };
 
 exports.checkUser = async (req, res) => {
-  const user = req.body
+  try{
+    const user = req.body
 
   const unameRegex = /^[a-zA-Z0-9_]*$/
   if(!unameRegex.test(user.username)){
@@ -118,4 +124,9 @@ exports.checkUser = async (req, res) => {
     return res.status(403).send({exists: true, error: "Username or Email already registered" });
   }
   return res.status(200).send({exists: false})
+  }
+  catch(error){
+    console.error("Error in user check in", error.message)
+    return res.status(400).send({error:"Error in user input validation"})
+  }
 }
