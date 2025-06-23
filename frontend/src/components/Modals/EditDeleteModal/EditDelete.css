@@ -72,7 +72,7 @@
   appearance: none; 
   background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
   background-repeat: no-repeat;
-  background-position-x: 230px;
+  background-position-x: 263px;
   background-position-y: center;
   cursor: pointer;
   transition: border-color 0.2s;
@@ -82,3 +82,25 @@
   border-color: white;
 }
 
+textarea{
+  resize: none;
+  padding: 0.75rem 1rem;
+  width: 255px;
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 0px;
+  color: #999;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  font-style:italic;
+  height: 100px
+
+}
+
+#date-uneditable{
+    background-color: #1c1c1c;
+    border: none;
+    color: gray;
+
+}

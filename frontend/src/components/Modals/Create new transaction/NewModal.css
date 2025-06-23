@@ -25,7 +25,7 @@ body, html {
 .modal-card {
   background-color: #1c1c1c;
   border-radius: 12px;
-  padding: 2rem 2rem;
+  padding: 1rem 4rem;
   box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.225);
   width: 350px;
   display: flex;
@@ -39,7 +39,7 @@ body, html {
   font-size: 2rem;
   font-weight: 700;
   text-align: center;
-  color: rgb(154, 190, 151);
+  color: rgb(106, 105, 105);
 }
 
 .transaction-form {
@@ -47,7 +47,7 @@ body, html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.2rem;
+  gap: 0.7rem;
 }
 
 .transaction-form div {
@@ -75,7 +75,7 @@ body, html {
  .submit-container {
     display: flex;
     flex-direction: row;
-    gap: 1px;
+    gap: 10px;
   }
 
 .submit {   
@@ -96,7 +96,7 @@ body, html {
     color: black;
 } 
 
-#cancel:hover{
+#cancel:hover, .cancel:hover{
     background-color: red;
     color:white;
     border: red;
@@ -104,7 +104,7 @@ body, html {
 
 .transaction-category {
   padding: 0.75rem 1rem;
-  width: 255px;
+  width: 290px;
   background-color: #333;
   border: 1px solid #555;
   border-radius: 8px;
@@ -114,7 +114,7 @@ body, html {
   appearance: none; 
   background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
   background-repeat: no-repeat;
-  background-position-x: 230px;
+  background-position-x: 263px;
   background-position-y: center;
   cursor: pointer;
   transition: border-color 0.2s;
@@ -122,4 +122,20 @@ body, html {
 
 .transaction-category:focus {
   border-color: white;
+}
+
+textarea{
+  resize: none;
+  padding: 0.75rem 1rem;
+  width: 255px;
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 0px;
+  color: #999;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  font-style:italic;
+  height: 100px
+
 }

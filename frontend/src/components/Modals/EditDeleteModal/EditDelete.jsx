@@ -110,7 +110,7 @@ export default function EditDelete({setBalance, transaction, onClose }) {
           </div>
           <div>
             <label>Date</label>
-            <input
+            <input id="date-uneditable"
               type="text"
               name="date"
               value={new Date(editedTransaction.date).toLocaleString()}
@@ -119,8 +119,8 @@ export default function EditDelete({setBalance, transaction, onClose }) {
           </div>
           <div>
             <label>Note</label>
-            <input
-              type="text"
+            <textarea
+              
               name="note"
               value={editedTransaction.note || ""}
               readOnly={!isEditing}

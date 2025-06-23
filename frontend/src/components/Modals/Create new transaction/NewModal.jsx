@@ -55,13 +55,13 @@ export default function NewModal(props) {
         <form className="modal-card" onSubmit={handleSubmit(onSubmit,onError)}>
           <div className="newModal-header" id="newModal-header">
             <div className="txt" id="txt">
-              Create transaction
+              Add transaction
             </div>
           </div>
           <div className="transaction-form" id="transaction-form">
             <div>
               <label htmlFor="title">Title</label>
-              <input {...register("title",{ required: true })} type="text" />
+              <input {...register("title",{ required: true })} type="text" placeholder="Enter title"/>
             </div>
             <div>
                 <label htmlFor="">Category</label>
@@ -77,7 +77,7 @@ export default function NewModal(props) {
             </div>
             <div>
               <label htmlFor="amount">Amount</label>
-              <input {...register("amount",{ required: true })} type="text"/> {/*Changed type to text so as to display error messages*/}
+              <input {...register("amount",{ required: true })} type="text" placeholder="Enter amount"/> {/*Changed type to text so as to display error messages*/}
             </div>
             {/* <div>
               <label htmlFor="date">Date</label>
@@ -85,7 +85,7 @@ export default function NewModal(props) {
             </div> */}
             <div>
               <label htmlFor="note">Note</label>
-              <input {...register("note")} type="text" />
+              <textarea {...register("note")} spellCheck={false} placeholder="Notes"/>
             </div>
             
           </div>
