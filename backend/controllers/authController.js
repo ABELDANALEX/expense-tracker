@@ -109,7 +109,7 @@ exports.checkUser = async (req, res) => {
 
     const pwdRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_\-+=])[^\s]{8,}$/
     if(!pwdRegex.test(user.password)){
-      return res.status(400).send({error:"Password must contain atleast \n\t-one uppercase letter \n\t-one lowercase letter \n\t-one digit \n\t-one special character \nAdditionally it must be atleast 8 characters long and shouldn't contain whitespaces"})
+      return res.status(400).send({error:"Password must be at least 8 characters long, contain uppercase and lowercase letters, a digit, a special character, and no spaces."})
     }
   const takenUserEmail = await User.findOne({email: user.email})
   const takenUserName = await User.findOne({username: user.username})
