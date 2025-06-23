@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NumberFlow from '@number-flow/react'
 import EditDelete from "../../components/Modals/EditDeleteModal/EditDelete";
-import NewModal from "../../components/Modals/Create new transaction/newModal";
+import NewModal from "../../components/Modals/Create new transaction/NewModal";
 import UpdateBalanceModal from "../../components/Modals/UpdateBalanceModal/UpdateBalanceModal";
 import TransactionCard from "../../components/Transaction/TransactionCard";
 import Pagination from "../../components/Pagination/Pagination";
