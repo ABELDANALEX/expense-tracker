@@ -77,7 +77,7 @@ export default function NewModal(props) {
             </div>
             <div>
               <label htmlFor="amount">Amount</label>
-              <input {...register("amount",{ required: true })} type="number" />
+              <input {...register("amount",{ required: true })} type="text"/> {/*Changed type to text so as to display error messages*/}
             </div>
             {/* <div>
               <label htmlFor="date">Date</label>
