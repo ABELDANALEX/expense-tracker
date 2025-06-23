@@ -36,7 +36,7 @@ export default function EditDelete({setBalance, transaction, onClose }) {
         setIsEditing(false);
         onClose()
     } catch (error) {
-        toast.error(error.response.data.message)
+        toast.error(error?.response?.data?.error || "Something went wrong")
         console.log(error)
     }
   }
@@ -51,7 +51,7 @@ export default function EditDelete({setBalance, transaction, onClose }) {
         onClose()
     } catch (error) {
         console.log(error)
-        toast.error(error.response.data.error)
+        toast.error(error?.response?.data?.error || "Something went wrong")
     }
   }
 
