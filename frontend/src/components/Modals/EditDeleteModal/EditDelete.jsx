@@ -101,7 +101,7 @@ export default function EditDelete({setBalance, transaction, onClose }) {
           <div>
             <label>Amount</label>
             <input
-              type="number"
+              type="text"
               name="amount"
               value={editedTransaction.amount}
               readOnly={!isEditing}
