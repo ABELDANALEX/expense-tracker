@@ -22,7 +22,7 @@ export default function UpdateBalanceModal(props){
             props.onClose()
         }catch(error){
             console.log(error)
-            toast.error(error.data.response.message)
+            toast.error(error.data.response.error || "Something went wrong")
         }
     }
 
