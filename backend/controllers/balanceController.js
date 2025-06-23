@@ -21,11 +21,11 @@ exports.updateBalance=async(req,res)=>{
         if (isNaN(amount)){ //
             return res.status(400).send({error:"Enter a valid amount"}) 
         }
+        if( amount<=0)return res.status(400).send({error:'Balance must be greater than 0'})
         const user=await User.findById(id)
         if(!user){
             return res.status(404).json({error:'User not found'})
         }
-        if( amount<=0)return res.status(400).send({error:'Balance must be greater than 0'})
         const balance=user.balance+amount
         const updatedUser=await User.findByIdAndUpdate(id,{balance:balance},{new:true})
         return res.status(200).send({message:'Balance updated successfully',updatedUser})
