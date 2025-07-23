@@ -1,3 +1,4 @@
 backend/.env
 .vercel
 vercel.json
+.env
